@@ -33,6 +33,19 @@ namespace SchoolManagement.Database
     public List<Student> GetAllStudents()
     {
       List<Student> students = new List<Student>();
+
+      MySqlCommand getAll = new MySqlCommand("SELECT * FROM `school_management`.students;", sqlConnection);
+      MySqlDataReader reader = getAll.ExecuteReader();
+      while (reader.Read())
+      {
+        Student student = new Student()
+        {
+          ID = reader.GetInt32(0),
+          Name = reader.GetString(1)
+        };
+        students.Add(student);
+      }
+
       return students;
     }
 
