@@ -1,10 +1,13 @@
 ﻿using MySql.Data.MySqlClient;
+using SchoolManagement.Models;
+using SchoolManagement.Protocols;
 using System;
+using System.Collections.Generic;
 using System.Windows;
 
 namespace SchoolManagement.Database
 {
-  public class MySQL
+  public class MySQL : IDatabase
   {
     private static readonly string host = "localhost";
     private static readonly string port = "3306";
@@ -25,6 +28,22 @@ namespace SchoolManagement.Database
         MessageBox.Show(exception.Message);
         throw new Exception("Error connecting to database");
       }
+    }
+
+    public List<Student> GetAllStudents()
+    {
+      List<Student> students = new List<Student>();
+      return students;
+    }
+
+    public void Connect()
+    {
+      sqlConnection.Open();
+    }
+
+    public void Disconnect()
+    {
+      sqlConnection.Close();
     }
   }
 }

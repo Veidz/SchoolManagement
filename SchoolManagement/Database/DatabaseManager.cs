@@ -1,4 +1,6 @@
-﻿using SchoolManagement.Protocols;
+﻿using SchoolManagement.Models;
+using SchoolManagement.Protocols;
+using System.Collections.Generic;
 
 namespace SchoolManagement.Database
 {
@@ -9,6 +11,11 @@ namespace SchoolManagement.Database
     public DatabaseManager(IDatabase database)
     {
       Database = database;
+    }
+
+    public List<Student> GetAllStudents()
+    {
+      return Database.GetAllStudents();
     }
   }
 }
