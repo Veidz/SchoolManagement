@@ -5,8 +5,6 @@ namespace SchoolManagement.Protocols
 {
   public interface IDatabase
   {
-    void Connect();
-    void Disconnect();
     List<Student> GetAllStudents();
   }
 }

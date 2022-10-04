@@ -32,6 +32,8 @@ namespace SchoolManagement.Database
 
     public List<Student> GetAllStudents()
     {
+      Connect();
+
       List<Student> students = new List<Student>();
 
       MySqlCommand getAll = new MySqlCommand("SELECT * FROM `school_management`.students;", sqlConnection);
@@ -46,15 +48,16 @@ namespace SchoolManagement.Database
         students.Add(student);
       }
 
+      Disconnect();
       return students;
     }
 
-    public void Connect()
+    private void Connect()
     {
       sqlConnection.Open();
     }
 
-    public void Disconnect()
+    private void Disconnect()
     {
       sqlConnection.Close();
     }

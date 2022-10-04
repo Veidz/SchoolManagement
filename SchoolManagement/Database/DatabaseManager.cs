@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace SchoolManagement.Database
 {
-  public class DatabaseManager
+  public class DatabaseManager : IDatabase
   {
     readonly IDatabase Database;
 
@@ -15,9 +15,7 @@ namespace SchoolManagement.Database
 
     public List<Student> GetAllStudents()
     {
-      Database.Connect();
       return Database.GetAllStudents();
-      //Database.Disconnect();
     }
   }
 }
