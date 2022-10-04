@@ -3,6 +3,7 @@
   public class Grades
   {
     private int subjectID;
+    private string subjectName;
     private int grade;
 
     public int SubjectID
@@ -11,6 +12,15 @@
       set
       {
         subjectID = value;
+      }
+    }
+
+    public string SubjectName
+    {
+      get { return subjectName; }
+      set
+      {
+        subjectName = value;
       }
     }
 
@@ -24,10 +34,5 @@
     }
 
     public Grades() { }
-    public Grades(int subjectID, int grade)
-    {
-      SubjectID = subjectID;
-      Grade = grade;
-    }
   }
 }
