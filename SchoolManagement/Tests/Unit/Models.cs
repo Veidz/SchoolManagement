@@ -24,7 +24,7 @@ namespace SchoolManagement.Tests
       };
 
       Moq.Mock<IDatabase> dbMock = new Moq.Mock<IDatabase>();
-      dbMock.Setup((a) => a.GetAllStudents()).Returns(studentsMock);
+      dbMock.Setup((db) => db.GetAllStudents()).Returns(studentsMock);
 
       DatabaseManager dbManager = new DatabaseManager(dbMock.Object);
       List<Student> students = dbManager.GetAllStudents();
@@ -36,7 +36,7 @@ namespace SchoolManagement.Tests
     public void Ensure_CreateStudent_Works_Properly()
     {
       Moq.Mock<IDatabase> dbMock = new Moq.Mock<IDatabase>();
-      dbMock.Setup((a) => a.CreateStudent("Any-Student"));
+      dbMock.Setup((db) => db.CreateStudent("Any-Student"));
 
       DatabaseManager dbManager = new DatabaseManager(dbMock.Object);
       dbManager.CreateStudent("Any-Student");
