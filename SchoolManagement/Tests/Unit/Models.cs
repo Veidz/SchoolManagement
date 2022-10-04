@@ -83,5 +83,22 @@ namespace SchoolManagement.Tests
         Assert.That(exception.Message, Is.EqualTo("Error editing student"));
       }
     }
+
+    [Test]
+    public void Ensure_EditStudent_Works_Properly_With_Valid_Param()
+    {
+      try
+      {
+        Moq.Mock<IDatabase> dbMock = new Moq.Mock<IDatabase>();
+        dbMock.Setup((db) => db.EditStudent(1, "Valid-Student"));
+
+        DatabaseManager dbManager = new DatabaseManager(dbMock.Object);
+        dbManager.EditStudent(1, "Valid-Student");
+      }
+      catch (Exception exception)
+      {
+        Assert.That(exception.Message, Is.Not.EqualTo("Error editing student"));
+      }
+    }
   }
 }
