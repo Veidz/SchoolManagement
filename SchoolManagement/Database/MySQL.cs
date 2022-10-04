@@ -52,6 +52,17 @@ namespace SchoolManagement.Database
       return students;
     }
 
+    public void CreateStudent(string name)
+    {
+      Connect();
+
+      MySqlCommand create = new MySqlCommand("INSERT INTO `school_management`.students (name) VALUES (@name)", sqlConnection);
+      create.Parameters.AddWithValue("@name", name);
+      create.ExecuteNonQuery();
+
+      Disconnect();
+    }
+
     private void Connect()
     {
       sqlConnection.Open();

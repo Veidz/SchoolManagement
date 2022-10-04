@@ -17,5 +17,10 @@ namespace SchoolManagement.Database
     {
       return Database.GetAllStudents();
     }
+
+    public void CreateStudent(string name)
+    {
+      Database.CreateStudent(name);
+    }
   }
 }
