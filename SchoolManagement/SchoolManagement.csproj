@@ -133,6 +133,7 @@
     <Compile Include="Protocols\IDatabase.cs" />
     <Compile Include="Tests\Unit\GradesModel.cs" />
     <Compile Include="Tests\Unit\StudentModel.cs" />
+    <Compile Include="ViewModels\MainViewModel.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
