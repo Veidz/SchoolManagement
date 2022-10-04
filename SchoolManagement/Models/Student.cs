@@ -1,6 +1,8 @@
-﻿namespace SchoolManagement.Models
+﻿using System.ComponentModel;
+
+namespace SchoolManagement.Models
 {
-  public class Student
+  public class Student : INotifyPropertyChanged
   {
     private int id;
     private string name;
@@ -11,6 +13,7 @@
       set
       {
         id = value;
+        NotifyPropertyChanged();
       }
     }
 
@@ -20,14 +23,22 @@
       set
       {
         name = value;
+        NotifyPropertyChanged();
       }
     }
+
+    public event PropertyChangedEventHandler PropertyChanged;
 
     public Student() { }
     public Student(int id, string name)
     {
       ID = id;
       Name = name;
+    }
+
+    private void NotifyPropertyChanged(string propertyName = "")
+    {
+      PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
     }
   }
 }
