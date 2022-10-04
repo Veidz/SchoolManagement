@@ -3,7 +3,6 @@ using SchoolManagement.Models;
 using SchoolManagement.Protocols;
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Windows;
 
 namespace SchoolManagement.Database

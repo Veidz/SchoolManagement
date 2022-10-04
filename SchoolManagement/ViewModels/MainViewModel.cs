@@ -2,17 +2,29 @@
 using SchoolManagement.Models;
 using SchoolManagement.Utils;
 using SchoolManagement.View;
-using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Windows.Input;
 
 namespace SchoolManagement.ViewModels
 {
-  public class MainViewModel
+  public class MainViewModel : INotifyPropertyChanged
   {
     private readonly DatabaseManager DBManager;
-    public ObservableCollection<Student> Students { get; set; }
+
+    public event PropertyChangedEventHandler PropertyChanged;
+
+    private ObservableCollection<Student> students;
+    public ObservableCollection<Student> Students
+    {
+      get { return students; }
+      set
+      {
+        students = value;
+        NotifyPropertyChanged();
+      }
+    }
 
     public Student SelectedStudent { get; set; }
 
@@ -47,8 +59,6 @@ namespace SchoolManagement.ViewModels
         {
           DBManager.CreateStudent(student.Name);
 
-          //Students.Clear();
-
           List<Student> studentList = DBManager.GetAllStudents();
           Students = new ObservableCollection<Student>(studentList);
         }
@@ -66,8 +76,6 @@ namespace SchoolManagement.ViewModels
         {
           DBManager.EditStudent(SelectedStudent.ID, SelectedStudent.Name);
 
-          //Students.Clear();
-
           List<Student> studentList = DBManager.GetAllStudents();
           Students = new ObservableCollection<Student>(studentList);
         }
@@ -77,11 +85,14 @@ namespace SchoolManagement.ViewModels
       {
         DBManager.DeleteStudent(SelectedStudent.ID);
 
-        //Students.Clear();
-
         List<Student> studentList = DBManager.GetAllStudents();
         Students = new ObservableCollection<Student>(studentList);
       }, param => SelectedStudent != null);
+    }
+
+    private void NotifyPropertyChanged(string propertyName = "")
+    {
+      PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
     }
   }
 }
