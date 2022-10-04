@@ -3,6 +3,7 @@ using SchoolManagement.Models;
 using SchoolManagement.Protocols;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Windows;
 
 namespace SchoolManagement.Database
@@ -80,6 +81,42 @@ namespace SchoolManagement.Database
       MySqlCommand remove = new MySqlCommand("DELETE FROM school_management.students WHERE id = @id;", sqlConnection);
       remove.Parameters.AddWithValue("@id", id);
       remove.ExecuteNonQuery();
+    }
+
+    public List<Grades> ShowGrades(int id)
+    {
+      Connect();
+
+      List<Grades> grades = new List<Grades>();
+
+      MySqlCommand showCommand = new MySqlCommand(@"
+        SELECT
+          grades.subject_id,
+          subjects.name,
+          grades.grade
+        FROM school_management.students
+        JOIN school_management.grades
+        ON students.id = grades.student_id
+        JOIN school_management.subjects
+        ON subjects.id = grades.subject_id
+        WHERE students.id = @student_id;",
+      sqlConnection);
+      showCommand.Parameters.AddWithValue("@student_id", id);
+
+      MySqlDataReader reader = showCommand.ExecuteReader();
+      while (reader.Read())
+      {
+        Grades grade = new Grades()
+        {
+          SubjectID = reader.GetInt32(0),
+          SubjectName = reader.GetString(1),
+          Grade = reader.GetInt32(2)
+        };
+        grades.Add(grade);
+      }
+
+      Disconnect();
+      return grades;
     }
 
     private void Connect()
