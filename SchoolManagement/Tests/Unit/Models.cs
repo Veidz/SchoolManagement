@@ -117,5 +117,22 @@ namespace SchoolManagement.Tests
         Assert.That(exception.Message, Is.EqualTo("Error deleting student"));
       }
     }
+
+    [Test]
+    public void Ensure_DeleteStudent_Works_Properly_With_Valid_Param()
+    {
+      try
+      {
+        Moq.Mock<IDatabase> dbMock = new Moq.Mock<IDatabase>();
+        dbMock.Setup((db) => db.DeleteStudent(1));
+
+        DatabaseManager dbManager = new DatabaseManager(dbMock.Object);
+        dbManager.DeleteStudent(1);
+      }
+      catch (Exception exception)
+      {
+        Assert.That(exception.Message, Is.Not.EqualTo("Error deleting student"));
+      }
+    }
   }
 }
