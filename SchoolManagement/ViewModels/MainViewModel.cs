@@ -72,6 +72,16 @@ namespace SchoolManagement.ViewModels
           Students = new ObservableCollection<Student>(studentList);
         }
       }, param => SelectedStudent != null);
+
+      DeleteStudent = new RelayCommand((param) =>
+      {
+        DBManager.DeleteStudent(SelectedStudent.ID);
+
+        //Students.Clear();
+
+        List<Student> studentList = DBManager.GetAllStudents();
+        Students = new ObservableCollection<Student>(studentList);
+      }, param => SelectedStudent != null);
     }
   }
 }
