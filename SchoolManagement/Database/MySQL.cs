@@ -123,11 +123,24 @@ namespace SchoolManagement.Database
     {
       Connect();
 
-      MySqlCommand addCommand = new MySqlCommand("INSERT INTO school_management.grades (student_id, subject_id, grade)VALUES (@student_id, @subject_id, @grade)", sqlConnection);
-      addCommand.Parameters.AddWithValue("@student_id", studentID);
-      addCommand.Parameters.AddWithValue("@subject_id", subjectID);
-      addCommand.Parameters.AddWithValue("@grade", grade);
-      addCommand.ExecuteNonQuery();
+      MySqlCommand add = new MySqlCommand("INSERT INTO school_management.grades (student_id, subject_id, grade)VALUES (@student_id, @subject_id, @grade);", sqlConnection);
+      add.Parameters.AddWithValue("@student_id", studentID);
+      add.Parameters.AddWithValue("@subject_id", subjectID);
+      add.Parameters.AddWithValue("@grade", grade);
+      add.ExecuteNonQuery();
+
+      Disconnect();
+    }
+
+    public void EditGrade(int studentID, int subjectID, float grade)
+    {
+      Connect();
+
+      MySqlCommand edit = new MySqlCommand("UPDATE school_management.grades SET grade = @grade WHERE student_id = @student_id AND subject_id = @subject_id;", sqlConnection);
+      edit.Parameters.AddWithValue("@student_id", studentID);
+      edit.Parameters.AddWithValue("@subject_id", subjectID);
+      edit.Parameters.AddWithValue("@grade", grade);
+      edit.ExecuteNonQuery();
 
       Disconnect();
     }

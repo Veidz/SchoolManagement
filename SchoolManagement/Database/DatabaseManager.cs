@@ -75,5 +75,18 @@ namespace SchoolManagement.Database
         throw new Exception("Error adding grade");
       }
     }
+
+    public void EditGrade(int studentID, int subjectID, float grade)
+    {
+      try
+      {
+        Database.EditGrade(studentID, subjectID, grade);
+      }
+      catch (Exception exception)
+      {
+        Console.WriteLine(exception.Message);
+        throw new Exception("Error editing grade");
+      }
+    }
   }
 }

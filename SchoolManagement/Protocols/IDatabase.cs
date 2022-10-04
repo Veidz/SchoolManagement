@@ -12,5 +12,6 @@ namespace SchoolManagement.Protocols
 
     List<Grades> ShowGrades(int id);
     void AddGrade(int studentID, int subjectID, float grade);
+    void EditGrade(int studentID, int subjectID, float grade);
   }
 }
