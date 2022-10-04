@@ -34,7 +34,7 @@ namespace SchoolManagement.Tests
     }
 
     [Test]
-    public void Ensure_CreateStudent_Works_Properly_With_Wrong_Param()
+    public void Ensure_CreateStudent_Works_Properly_With_Invalid_Param()
     {
       try
       {
