@@ -14,6 +14,8 @@ namespace SchoolManagement.ViewModels
     private readonly DatabaseManager DBManager;
     public ObservableCollection<Student> Students { get; set; }
 
+    public Student SelectedStudent { get; set; }
+
     public ICommand CreateStudent { get; private set; }
     public ICommand EditStudent { get; private set; }
     public ICommand DeleteStudent { get; private set; }
@@ -51,6 +53,25 @@ namespace SchoolManagement.ViewModels
           Students = new ObservableCollection<Student>(studentList);
         }
       });
+
+      EditStudent = new RelayCommand((param) =>
+      {
+        StudentWindow studentWindow = new StudentWindow()
+        {
+          DataContext = SelectedStudent
+        };
+
+        bool? dialogResult = studentWindow.ShowDialog();
+        if (dialogResult == true)
+        {
+          DBManager.EditStudent(SelectedStudent.ID, SelectedStudent.Name);
+
+          //Students.Clear();
+
+          List<Student> studentList = DBManager.GetAllStudents();
+          Students = new ObservableCollection<Student>(studentList);
+        }
+      }, param => SelectedStudent != null);
     }
   }
 }
