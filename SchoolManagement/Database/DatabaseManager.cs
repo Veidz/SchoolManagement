@@ -1,6 +1,8 @@
 ﻿using SchoolManagement.Models;
 using SchoolManagement.Protocols;
+using System;
 using System.Collections.Generic;
+using System.Windows;
 
 namespace SchoolManagement.Database
 {
@@ -20,7 +22,15 @@ namespace SchoolManagement.Database
 
     public void CreateStudent(string name)
     {
-      Database.CreateStudent(name);
+      try
+      {
+        Database.CreateStudent(name);
+      }
+      catch (Exception exception)
+      {
+        //MessageBox.Show(exception.Message);
+        throw new Exception("Error creating student");
+      }
     }
   }
 }

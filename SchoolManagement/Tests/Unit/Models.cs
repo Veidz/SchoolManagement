@@ -2,6 +2,7 @@
 using SchoolManagement.Database;
 using SchoolManagement.Models;
 using SchoolManagement.Protocols;
+using System;
 using System.Collections.Generic;
 
 namespace SchoolManagement.Tests
@@ -33,15 +34,20 @@ namespace SchoolManagement.Tests
     }
 
     [Test]
-    public void Ensure_CreateStudent_Works_Properly()
+    public void Ensure_CreateStudent_Works_Properly_With_Wrong_Param()
     {
-      Moq.Mock<IDatabase> dbMock = new Moq.Mock<IDatabase>();
-      dbMock.Setup((db) => db.CreateStudent("Any-Student"));
+      try
+      {
+        Moq.Mock<IDatabase> dbMock = new Moq.Mock<IDatabase>();
+        dbMock.Setup((db) => db.CreateStudent("Invalid-Student")).Throws(new Exception("Error creating student"));
 
-      DatabaseManager dbManager = new DatabaseManager(dbMock.Object);
-      dbManager.CreateStudent("Any-Student");
-
-      Assert.Pass();
+        DatabaseManager dbManager = new DatabaseManager(dbMock.Object);
+        dbManager.CreateStudent("Invalid-Student");
+      }
+      catch (Exception exception)
+      {
+        Assert.That(exception.Message, Is.EqualTo("Error creating student"));
+      }
     }
   }
 }
