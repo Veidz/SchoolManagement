@@ -1,4 +1,6 @@
-﻿namespace SchoolManagement.Models
+﻿using Org.BouncyCastle.Security;
+
+namespace SchoolManagement.Models
 {
   public class Grades
   {
@@ -34,5 +36,11 @@
     }
 
     public Grades() { }
+    public Grades(int subjectID, string subjectName, int grade)
+    {
+      SubjectID = subjectID;
+      SubjectName = subjectName;
+      Grade = grade;
+    }
   }
 }

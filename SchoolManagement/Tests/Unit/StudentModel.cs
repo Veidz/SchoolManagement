@@ -5,7 +5,7 @@ using SchoolManagement.Protocols;
 using System;
 using System.Collections.Generic;
 
-namespace SchoolManagement.Tests
+namespace SchoolManagement.Tests.Unit
 {
   public class StudentModel
   {
