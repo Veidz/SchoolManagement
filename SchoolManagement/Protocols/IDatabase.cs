@@ -9,5 +9,7 @@ namespace SchoolManagement.Protocols
     void CreateStudent(string name);
     void EditStudent(int id, string name);
     void DeleteStudent(int id);
+
+    List<Grades> ShowGrades(int id);
   }
 }

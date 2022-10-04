@@ -57,5 +57,10 @@ namespace SchoolManagement.Database
         throw new Exception("Error deleting student");
       }
     }
+  
+    public List<Grades> ShowGrades(int id)
+    {
+      return Database.ShowGrades(id);
+    }
   }
 }
