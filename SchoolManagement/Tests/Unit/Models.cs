@@ -6,7 +6,7 @@ using System.Collections.Generic;
 
 namespace SchoolManagement.Tests
 {
-  public class Unit
+  public class Models
   {
     [Test]
     public void Ensure_GetAllStudents_Works_Properly()
@@ -30,6 +30,18 @@ namespace SchoolManagement.Tests
       List<Student> students = dbManager.GetAllStudents();
 
       Assert.That(students, Is.EqualTo(studentsMock));
+    }
+
+    [Test]
+    public void Ensure_CreateStudent_Works_Properly()
+    {
+      Moq.Mock<IDatabase> dbMock = new Moq.Mock<IDatabase>();
+      dbMock.Setup((a) => a.CreateStudent("Any-Student"));
+
+      DatabaseManager dbManager = new DatabaseManager(dbMock.Object);
+      dbManager.CreateStudent("Any-Student");
+
+      Assert.Pass();
     }
   }
 }
