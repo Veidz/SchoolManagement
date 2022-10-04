@@ -2,7 +2,6 @@
 using SchoolManagement.Protocols;
 using System;
 using System.Collections.Generic;
-using System.Windows;
 
 namespace SchoolManagement.Database
 {
@@ -43,6 +42,19 @@ namespace SchoolManagement.Database
       {
         Console.WriteLine(exception.Message);
         throw new Exception("Error editing student");
+      }
+    }
+
+    public void DeleteStudent(int id)
+    {
+      try
+      {
+        Database.DeleteStudent(id);
+      }
+      catch (Exception exception)
+      {
+        Console.WriteLine(exception.Message);
+        throw new Exception("Error deleting student");
       }
     }
   }

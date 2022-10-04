@@ -8,5 +8,6 @@ namespace SchoolManagement.Protocols
     List<Student> GetAllStudents();
     void CreateStudent(string name);
     void EditStudent(int id, string name);
+    void DeleteStudent(int id);
   }
 }

@@ -75,6 +75,13 @@ namespace SchoolManagement.Database
       Disconnect();
     }
 
+    public void DeleteStudent(int id)
+    {
+      MySqlCommand remove = new MySqlCommand("DELETE FROM school_management.students WHERE id = @id;", sqlConnection);
+      remove.Parameters.AddWithValue("@id", id);
+      remove.ExecuteNonQuery();
+    }
+
     private void Connect()
     {
       sqlConnection.Open();
