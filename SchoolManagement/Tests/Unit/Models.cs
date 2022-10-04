@@ -49,5 +49,22 @@ namespace SchoolManagement.Tests
         Assert.That(exception.Message, Is.EqualTo("Error creating student"));
       }
     }
+
+    [Test]
+    public void Ensure_CreateStudent_Works_Properly()
+    {
+      try
+      {
+        Moq.Mock<IDatabase> dbMock = new Moq.Mock<IDatabase>();
+        dbMock.Setup((db) => db.CreateStudent("Valid-Student"));
+
+        DatabaseManager dbManager = new DatabaseManager(dbMock.Object);
+        dbManager.CreateStudent("Valid-Student");
+      }
+      catch (Exception exception)
+      {
+        Assert.That(exception.Message, Is.Not.EqualTo("Error creating student"));
+      }
+    }
   }
 }
