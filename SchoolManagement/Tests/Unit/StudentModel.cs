@@ -7,7 +7,7 @@ using System.Collections.Generic;
 
 namespace SchoolManagement.Tests
 {
-  public class Models
+  public class StudentModel
   {
     [Test]
     public void Ensure_GetAllStudents_Works_Properly()
