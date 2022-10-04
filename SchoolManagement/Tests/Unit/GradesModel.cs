@@ -50,5 +50,22 @@ namespace SchoolManagement.Tests.Unit
         Assert.That(exception.Message, Is.EqualTo("Error adding grade"));
       }
     }
+
+    [Test]
+    public void Ensure_AddGrade_Works_Properly_With_Valid_Param()
+    {
+      try
+      {
+        Moq.Mock<IDatabase> dbMock = new Moq.Mock<IDatabase>();
+        dbMock.Setup((db) => db.AddGrade(1, 1, 1));
+
+        DatabaseManager dbManager = new DatabaseManager(dbMock.Object);
+        dbManager.AddGrade(1, 1, 1);
+      }
+      catch (Exception exception)
+      {
+        Assert.That(exception.Message, Is.Not.EqualTo("Error adding grade"));
+      }
+    }
   }
 }
