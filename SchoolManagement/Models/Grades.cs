@@ -6,7 +6,7 @@ namespace SchoolManagement.Models
   {
     private int subjectID;
     private string subjectName;
-    private int grade;
+    private float grade;
 
     public int SubjectID
     {
@@ -26,7 +26,7 @@ namespace SchoolManagement.Models
       }
     }
 
-    public int Grade
+    public float Grade
     {
       get { return grade; }
       set
@@ -36,7 +36,7 @@ namespace SchoolManagement.Models
     }
 
     public Grades() { }
-    public Grades(int subjectID, string subjectName, int grade)
+    public Grades(int subjectID, string subjectName, float grade)
     {
       SubjectID = subjectID;
       SubjectName = subjectName;
