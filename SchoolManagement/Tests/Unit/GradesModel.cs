@@ -84,5 +84,22 @@ namespace SchoolManagement.Tests.Unit
         Assert.That(exception.Message, Is.EqualTo("Error editing grade"));
       }
     }
+
+    [Test]
+    public void Ensure_EditGrade_Works_Properly_With_Valid_Param()
+    {
+      try
+      {
+        Moq.Mock<IDatabase> dbMock = new Moq.Mock<IDatabase>();
+        dbMock.Setup((db) => db.EditGrade(1, 1, 1));
+
+        DatabaseManager dbManager = new DatabaseManager(dbMock.Object);
+        dbManager.EditGrade(1, 1, 1);
+      }
+      catch (Exception exception)
+      {
+        Assert.That(exception.Message, Is.Not.EqualTo("Error editing grade"));
+      }
+    }
   }
 }
