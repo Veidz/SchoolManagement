@@ -119,6 +119,19 @@ namespace SchoolManagement.Database
       return grades;
     }
 
+    public void AddGrade(int studentID, int subjectID, float grade)
+    {
+      Connect();
+
+      MySqlCommand addCommand = new MySqlCommand("INSERT INTO school_management.grades (student_id, subject_id, grade)VALUES (@student_id, @subject_id, @grade)", sqlConnection);
+      addCommand.Parameters.AddWithValue("@student_id", studentID);
+      addCommand.Parameters.AddWithValue("@subject_id", subjectID);
+      addCommand.Parameters.AddWithValue("@grade", grade);
+      addCommand.ExecuteNonQuery();
+
+      Disconnect();
+    }
+
     private void Connect()
     {
       sqlConnection.Open();

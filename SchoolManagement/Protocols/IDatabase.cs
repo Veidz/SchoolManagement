@@ -11,5 +11,6 @@ namespace SchoolManagement.Protocols
     void DeleteStudent(int id);
 
     List<Grades> ShowGrades(int id);
+    void AddGrade(int studentID, int subjectID, float grade);
   }
 }

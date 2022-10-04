@@ -62,5 +62,18 @@ namespace SchoolManagement.Database
     {
       return Database.ShowGrades(id);
     }
+
+    public void AddGrade(int studentID, int subjectID, float grade)
+    {
+      try
+      {
+        Database.AddGrade(studentID, subjectID, grade);
+      }
+      catch (Exception exception)
+      {
+        Console.WriteLine(exception.Message);
+        throw new Exception("Error adding grade");
+      }
+    }
   }
 }
