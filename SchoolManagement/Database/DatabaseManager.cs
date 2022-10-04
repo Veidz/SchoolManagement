@@ -28,8 +28,21 @@ namespace SchoolManagement.Database
       }
       catch (Exception exception)
       {
-        //MessageBox.Show(exception.Message);
+        Console.WriteLine(exception.Message);
         throw new Exception("Error creating student");
+      }
+    }
+
+    public void EditStudent(int id, string name)
+    {
+      try
+      {
+        Database.EditStudent(id, name);
+      }
+      catch (Exception exception)
+      {
+        Console.WriteLine(exception.Message);
+        throw new Exception("Error editing student");
       }
     }
   }

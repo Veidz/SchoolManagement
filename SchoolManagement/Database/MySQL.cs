@@ -63,6 +63,18 @@ namespace SchoolManagement.Database
       Disconnect();
     }
 
+    public void EditStudent(int id, string name)
+    {
+      Connect();
+
+      MySqlCommand edit = new MySqlCommand("UPDATE school_management.students SET name = @name WHERE id = @id;", sqlConnection);
+      edit.Parameters.AddWithValue("@name", name);
+      edit.Parameters.AddWithValue("@id", id);
+      edit.ExecuteNonQuery();
+
+      Disconnect();
+    }
+
     private void Connect()
     {
       sqlConnection.Open();
