@@ -40,7 +40,7 @@ namespace SchoolManagement.Database
       }
       catch (Exception exception)
       {
-        Console.WriteLine(exception.Message);
+        if (exception.Message.Contains("null")) throw new ArgumentNullException("Invalid name");
         throw new Exception("Error editing student");
       }
     }
