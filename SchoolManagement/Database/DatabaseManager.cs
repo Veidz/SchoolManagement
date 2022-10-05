@@ -3,6 +3,7 @@ using SchoolManagement.Protocols;
 using System;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
+using System.Xml.Linq;
 
 namespace SchoolManagement.Database
 {
@@ -74,6 +75,7 @@ namespace SchoolManagement.Database
       try
       {
         if (grade > 10) throw new Exception("Grade cannot be greater than 10");
+        if (grade < 0) throw new Exception("Grade cannot be less than 0");
 
         Database.AddGrade(studentID, subjectID, grade);
       }

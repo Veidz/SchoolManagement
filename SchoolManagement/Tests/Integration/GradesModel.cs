@@ -17,5 +17,17 @@ namespace SchoolManagement.Tests.Integration
           .With.Property("Message")
           .EqualTo("Grade cannot be greater than 10"));
     }
+
+    [Test]
+    public void Ensure_AddGrade_Throws_If_Grade_Is_Less_Than_0()
+    {
+      DatabaseManager dbManager = new DatabaseManager(new MySQL());
+
+      Assert.That(() => dbManager.AddGrade(1, 1, -1),
+        Throws.Exception
+          .TypeOf<Exception>()
+          .With.Property("Message")
+          .EqualTo("Grade cannot be less than 0"));
+    }
   }
 }
