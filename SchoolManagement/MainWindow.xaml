@@ -20,5 +20,17 @@
         </GridView>
       </ListView.View>
     </ListView>
+
+    <Button Command="{Binding AddGrade}" Content="Add Grade" HorizontalAlignment="Left" Margin="89,243,0,0" VerticalAlignment="Top" Height="41" Width="105"/>
+    <Button Command="{Binding EditGrade}" Content="Edit Grade" HorizontalAlignment="Left" Margin="89,301,0,0" VerticalAlignment="Top" Height="41" Width="105"/>
+    <ListView ItemsSource="{Binding Grades}" SelectedItem="{Binding SelectedGrade}" Margin="307,227,0,-1">
+      <ListView.View>
+        <GridView>
+          <GridViewColumn Header="Subject ID" DisplayMemberBinding="{Binding SubjectID}"/>
+          <GridViewColumn Header="Subject Name" DisplayMemberBinding="{Binding SubjectName}"/>
+          <GridViewColumn Header="Grade" DisplayMemberBinding="{Binding Grade}"/>
+        </GridView>
+      </ListView.View>
+    </ListView>
   </Grid>
 </Window>

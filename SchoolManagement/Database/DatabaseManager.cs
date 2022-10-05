@@ -89,12 +89,13 @@ namespace SchoolManagement.Database
     {
       try
       {
+        if (grade > 10) throw new Exception("Grade cannot be greater than 10");
+        if (grade < 0) throw new Exception("Grade cannot be less than 0");
         Database.EditGrade(studentID, subjectID, grade);
       }
       catch (Exception exception)
       {
-        Console.WriteLine(exception.Message);
-        throw new Exception("Error editing grade");
+        throw exception;
       }
     }
   }

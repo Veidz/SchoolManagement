@@ -8,7 +8,7 @@
         Title="Grade Management" Height="344" Width="271">
   <Grid Margin="3">
     <TextBlock FontSize="20" HorizontalAlignment="Left" Margin="23,26,0,0" TextWrapping="Wrap" Text="Subject ID" VerticalAlignment="Top"/>
-    <TextBox FontSize="20" HorizontalAlignment="Left" Margin="23,58,0,0" TextWrapping="Wrap" Text="{Binding ID}" VerticalAlignment="Top" Width="217"/>
+    <TextBox FontSize="20" HorizontalAlignment="Left" Margin="23,58,0,0" TextWrapping="Wrap" Text="{Binding SubjectID}" VerticalAlignment="Top" Width="217"/>
 
     <TextBlock FontSize="20" HorizontalAlignment="Left" Margin="23,118,0,0" TextWrapping="Wrap" Text="Grade" VerticalAlignment="Top"/>
     <TextBox FontSize="20" HorizontalAlignment="Left" Margin="23,150,0,0" TextWrapping="Wrap" Text="{Binding Grade}" VerticalAlignment="Top" Width="217"/>
