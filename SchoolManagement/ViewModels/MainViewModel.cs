@@ -34,11 +34,8 @@ namespace SchoolManagement.ViewModels
 
     public MainViewModel()
     {
-      Students = new ObservableCollection<Student>();
       DBManager = new DatabaseManager(new MySQL());
-
-      List<Student> studentList = DBManager.GetAllStudents();
-      Students = new ObservableCollection<Student>(studentList);
+      Students = new ObservableCollection<Student>(DBManager.GetAllStudents());
 
       StartCommands();
     }
