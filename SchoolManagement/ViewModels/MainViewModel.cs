@@ -148,9 +148,16 @@ namespace SchoolManagement.ViewModels
         bool? dialogResult = gradeWindow.ShowDialog();
         if (dialogResult == true)
         {
-          DBManager.AddGrade(SelectedStudent.ID, grade.SubjectID, grade.Grade);
-          //Subjects.Clear();
-          Grades = new ObservableCollection<Grades>(DBManager.ShowGrades(SelectedStudent.ID));
+          try
+          {
+            DBManager.AddGrade(SelectedStudent.ID, grade.SubjectID, grade.Grade);
+
+            Grades = new ObservableCollection<Grades>(DBManager.ShowGrades(SelectedStudent.ID));
+          }
+          catch (Exception exception)
+          {
+            MessageBox.Show(exception.Message);
+          }
         }
       }, param => SelectedStudent != null);
     }
