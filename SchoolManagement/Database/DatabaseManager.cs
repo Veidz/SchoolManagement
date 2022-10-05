@@ -23,12 +23,14 @@ namespace SchoolManagement.Database
     {
       try
       {
+        if (name == null) throw new ArgumentNullException("Name cannot be null");
+        if (name.Length < 3) throw new Exception("Name must be at least 3 characters long");
+
         Database.CreateStudent(name);
       }
       catch (Exception exception)
       {
-        if (exception.Message.Contains("null")) throw new ArgumentNullException("Invalid name");
-        throw new Exception("Error creating student");
+        throw exception;
       }
     }
 

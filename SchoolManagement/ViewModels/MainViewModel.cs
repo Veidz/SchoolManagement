@@ -2,9 +2,11 @@
 using SchoolManagement.Models;
 using SchoolManagement.Utils;
 using SchoolManagement.View;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Windows;
 using System.Windows.Input;
 
 namespace SchoolManagement.ViewModels
@@ -42,6 +44,11 @@ namespace SchoolManagement.ViewModels
 
     public void StartCommands()
     {
+      UserCommands();
+    }
+
+    public void UserCommands()
+    {
       CreateStudent = new RelayCommand((param) =>
       {
         Student student = new Student();
@@ -54,10 +61,17 @@ namespace SchoolManagement.ViewModels
         bool? dialogResult = studentWindow.ShowDialog();
         if (dialogResult == true)
         {
-          DBManager.CreateStudent(student.Name);
+          try
+          {
+            DBManager.CreateStudent(student.Name);
 
-          List<Student> studentList = DBManager.GetAllStudents();
-          Students = new ObservableCollection<Student>(studentList);
+            List<Student> studentList = DBManager.GetAllStudents();
+            Students = new ObservableCollection<Student>(studentList);
+          }
+          catch (Exception exception)
+          {
+            MessageBox.Show(exception.Message);
+          }
         }
       });
 
