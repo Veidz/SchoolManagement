@@ -71,7 +71,6 @@ namespace SchoolManagement.Database
       }
       catch (Exception exception)
       {
-        Console.WriteLine(exception.Message);
         if (exception.Message.Contains("student_id")) throw new Exception("Invalid StudentID");
         if (exception.Message.Contains("subject_id")) throw new Exception("Invalid SubjectID");
         throw new Exception("Error adding grade");
