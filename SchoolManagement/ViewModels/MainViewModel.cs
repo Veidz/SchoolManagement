@@ -48,7 +48,11 @@ namespace SchoolManagement.ViewModels
       set
       {
         selectedStudent = value;
-        Grades = new ObservableCollection<Grades>(DBManager.ShowGrades(SelectedStudent.ID));
+
+        if (SelectedStudent != null)
+        {
+          Grades = new ObservableCollection<Grades>(DBManager.ShowGrades(SelectedStudent.ID));
+        }
       }
     }
     public Grades SelectedGrade { get; set; }
@@ -129,6 +133,8 @@ namespace SchoolManagement.ViewModels
       DeleteStudent = new RelayCommand((param) =>
       {
         DBManager.DeleteStudent(SelectedStudent.ID);
+
+        Grades.Clear();
 
         Students = new ObservableCollection<Student>(DBManager.GetAllStudents());
       }, param => SelectedStudent != null);
