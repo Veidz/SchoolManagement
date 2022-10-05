@@ -85,10 +85,16 @@ namespace SchoolManagement.ViewModels
         bool? dialogResult = studentWindow.ShowDialog();
         if (dialogResult == true)
         {
-          DBManager.EditStudent(SelectedStudent.ID, SelectedStudent.Name);
+          try
+          {
+            DBManager.EditStudent(SelectedStudent.ID, SelectedStudent.Name);
 
-          List<Student> studentList = DBManager.GetAllStudents();
-          Students = new ObservableCollection<Student>(studentList);
+            Students = new ObservableCollection<Student>(DBManager.GetAllStudents());
+          }
+          catch (Exception exception)
+          {
+            MessageBox.Show(exception.Message);
+          }
         }
       }, param => SelectedStudent != null);
 
@@ -96,8 +102,7 @@ namespace SchoolManagement.ViewModels
       {
         DBManager.DeleteStudent(SelectedStudent.ID);
 
-        List<Student> studentList = DBManager.GetAllStudents();
-        Students = new ObservableCollection<Student>(studentList);
+        Students = new ObservableCollection<Student>(DBManager.GetAllStudents());
       }, param => SelectedStudent != null);
     }
 
