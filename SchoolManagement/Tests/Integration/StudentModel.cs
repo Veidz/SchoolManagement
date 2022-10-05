@@ -43,7 +43,7 @@ namespace SchoolManagement.Tests.Integration
     }
 
     [Test]
-    public void Ensure_EditStudent_Throws_With_Null_Param()
+    public void Ensure_EditStudent_Throws_If_Param_Is_Null()
     {
       DatabaseManager dbManager = new DatabaseManager(new MySQL());
 
@@ -51,7 +51,7 @@ namespace SchoolManagement.Tests.Integration
         Throws.Exception
           .TypeOf<ArgumentNullException>()
           .With.Property("ParamName")
-          .EqualTo("Invalid name"));
+          .EqualTo("Name cannot be null"));
     }
   }
 }
