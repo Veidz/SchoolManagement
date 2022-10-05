@@ -7,7 +7,7 @@ namespace SchoolManagement.Tests.Integration
   public class StudentModel
   {
     [Test]
-    public void Ensure_CreateStudent_Works_Properly_With_Null_Param()
+    public void Ensure_CreateStudent_Throws_With_Null_Param()
     {
       DatabaseManager dbManager = new DatabaseManager(new MySQL());
 
@@ -19,7 +19,7 @@ namespace SchoolManagement.Tests.Integration
     }
 
     [Test]
-    public void Ensure_CreateStudent_Works_Properly_With_Invalid_Param_Length()
+    public void Ensure_CreateStudent_Throws_With_Invalid_Param_Length()
     {
       DatabaseManager dbManager = new DatabaseManager(new MySQL());
 
@@ -31,7 +31,7 @@ namespace SchoolManagement.Tests.Integration
     }
 
     [Test]
-    public void Ensure_CreateStudent_Works_Properly_With_Numbers_Param()
+    public void Ensure_CreateStudent_Throws_With_Numbers_Param()
     {
       DatabaseManager dbManager = new DatabaseManager(new MySQL());
 
@@ -43,7 +43,7 @@ namespace SchoolManagement.Tests.Integration
     }
 
     [Test]
-    public void Ensure_EditStudent_Works_Properly_With_Null_Param()
+    public void Ensure_EditStudent_Throws_With_Null_Param()
     {
       DatabaseManager dbManager = new DatabaseManager(new MySQL());
 
