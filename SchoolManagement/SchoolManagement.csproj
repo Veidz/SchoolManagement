@@ -156,6 +156,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Database\PgSQL.cs" />
     <Compile Include="Models\Grades.cs" />
     <Compile Include="Protocols\IDatabase.cs" />
     <Compile Include="Tests\Integration\GradesModel.cs" />
