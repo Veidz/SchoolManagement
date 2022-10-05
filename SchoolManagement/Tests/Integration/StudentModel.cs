@@ -53,5 +53,17 @@ namespace SchoolManagement.Tests.Integration
           .With.Property("ParamName")
           .EqualTo("Name cannot be null"));
     }
+
+    [Test]
+    public void Ensure_EditStudent_Throws_If_Param_Length_Is_Less_Than_3()
+    {
+      DatabaseManager dbManager = new DatabaseManager(new MySQL());
+
+      Assert.That(() => dbManager.EditStudent(1, "aa"),
+        Throws.Exception
+          .TypeOf<Exception>()
+          .With.Property("Message")
+          .EqualTo("Name must be at least 3 characters long"));
+    }
   }
 }
