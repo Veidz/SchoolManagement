@@ -1,6 +1,5 @@
 ﻿using NUnit.Framework;
 using SchoolManagement.Database;
-using SchoolManagement.Protocols;
 using System;
 
 namespace SchoolManagement.Tests.Integration
