@@ -1,0 +1,19 @@
+﻿<Window x:Class="SchoolManagement.View.GradeWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SchoolManagement.View"
+        mc:Ignorable="d"
+        Title="Grade Management" Height="344" Width="271">
+  <Grid Margin="3">
+    <TextBlock FontSize="20" HorizontalAlignment="Left" Margin="23,26,0,0" TextWrapping="Wrap" Text="Subject ID" VerticalAlignment="Top"/>
+    <TextBox FontSize="20" HorizontalAlignment="Left" Margin="23,58,0,0" TextWrapping="Wrap" Text="{Binding ID}" VerticalAlignment="Top" Width="217"/>
+
+    <TextBlock FontSize="20" HorizontalAlignment="Left" Margin="23,118,0,0" TextWrapping="Wrap" Text="Grade" VerticalAlignment="Top"/>
+    <TextBox FontSize="20" HorizontalAlignment="Left" Margin="23,150,0,0" TextWrapping="Wrap" Text="{Binding Grade}" VerticalAlignment="Top" Width="217"/>
+
+    <Button Content="Add" HorizontalAlignment="Left" Margin="23,212,0,0" VerticalAlignment="Top" Height="30" Width="63" Click="AddGradeClick"/>
+    <Button Content="Cancel" HorizontalAlignment="Left" Margin="177,212,0,0" VerticalAlignment="Top" Height="30" Width="63" IsCancel="True"/>
+  </Grid>
+</Window>
