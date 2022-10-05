@@ -10,9 +10,9 @@ namespace SchoolManagement.Database
   public class MySQL : IDatabase
   {
     private static readonly string host = "localhost";
-    private static readonly string port = "3306";
+    private static readonly string port = "3307";
     private static readonly string user = "root";
-    private static readonly string password = "root";
+    private static readonly string password = "docker";
     private static readonly string dbname = "school_management";
 
     private static MySqlConnection sqlConnection;
