@@ -15,7 +15,7 @@ namespace SchoolManagement.Tests.Integration
         Throws.Exception
           .TypeOf<ArgumentNullException>()
           .With.Property("ParamName")
-          .EqualTo("Invalid name"));
+          .EqualTo("Name cannot be null"));
     }
 
     [Test]
