@@ -35,71 +35,59 @@ namespace SchoolManagement.Tests.Unit
     }
 
     [Test]
-    public void Ensure_AddGrade_Works_Properly_With_Invalid_Param()
+    public void Ensure_AddGrade_Throws_If_Grade_Is_Greater_Than_10()
     {
-      try
-      {
-        Moq.Mock<IDatabase> dbMock = new Moq.Mock<IDatabase>();
-        dbMock.Setup((db) => db.AddGrade(1, 1, 1)).Throws(new Exception("Error adding grade"));
+      Moq.Mock<IDatabase> dbMock = new Moq.Mock<IDatabase>();
 
-        DatabaseManager dbManager = new DatabaseManager(dbMock.Object);
-        dbManager.AddGrade(1, 1, 1);
-      }
-      catch (Exception exception)
-      {
-        Assert.That(exception.Message, Is.EqualTo("Error adding grade"));
-      }
+      DatabaseManager dbManager = new DatabaseManager(dbMock.Object);
+
+      Assert.That(() => dbManager.AddGrade(1, 1, 11),
+      Throws.Exception
+        .TypeOf<Exception>()
+        .With.Property("Message")
+        .EqualTo("Grade cannot be greater than 10"));
     }
 
     [Test]
-    public void Ensure_AddGrade_Works_Properly_With_Valid_Param()
+    public void Ensure_AddGrade_Throws_If_Grade_Is_Less_Than_0()
     {
-      try
-      {
-        Moq.Mock<IDatabase> dbMock = new Moq.Mock<IDatabase>();
-        dbMock.Setup((db) => db.AddGrade(1, 1, 1));
+      Moq.Mock<IDatabase> dbMock = new Moq.Mock<IDatabase>();
 
-        DatabaseManager dbManager = new DatabaseManager(dbMock.Object);
-        dbManager.AddGrade(1, 1, 1);
-      }
-      catch (Exception exception)
-      {
-        Assert.That(exception.Message, Is.Not.EqualTo("Error adding grade"));
-      }
+      DatabaseManager dbManager = new DatabaseManager(dbMock.Object);
+
+      Assert.That(() => dbManager.AddGrade(1, 1, -1),
+      Throws.Exception
+        .TypeOf<Exception>()
+        .With.Property("Message")
+        .EqualTo("Grade cannot be less than 0"));
     }
 
     [Test]
-    public void Ensure_EditGrade_Works_Properly_With_Invalid_Param()
+    public void Ensure_EditGrade_Throws_If_Grade_Is_Greater_Than_10()
     {
-      try
-      {
-        Moq.Mock<IDatabase> dbMock = new Moq.Mock<IDatabase>();
-        dbMock.Setup((db) => db.EditGrade(1, 1, 1)).Throws(new Exception("Error editing grade"));
+      Moq.Mock<IDatabase> dbMock = new Moq.Mock<IDatabase>();
 
-        DatabaseManager dbManager = new DatabaseManager(dbMock.Object);
-        dbManager.EditGrade(1, 1, 1);
-      }
-      catch (Exception exception)
-      {
-        Assert.That(exception.Message, Is.EqualTo("Error editing grade"));
-      }
+      DatabaseManager dbManager = new DatabaseManager(dbMock.Object);
+
+      Assert.That(() => dbManager.EditGrade(1, 1, 11),
+      Throws.Exception
+        .TypeOf<Exception>()
+        .With.Property("Message")
+        .EqualTo("Grade cannot be greater than 10"));
     }
 
     [Test]
-    public void Ensure_EditGrade_Works_Properly_With_Valid_Param()
+    public void Ensure_Edit_Throws_If_Grade_Is_Less_Than_0()
     {
-      try
-      {
-        Moq.Mock<IDatabase> dbMock = new Moq.Mock<IDatabase>();
-        dbMock.Setup((db) => db.EditGrade(1, 1, 1));
+      Moq.Mock<IDatabase> dbMock = new Moq.Mock<IDatabase>();
 
-        DatabaseManager dbManager = new DatabaseManager(dbMock.Object);
-        dbManager.EditGrade(1, 1, 1);
-      }
-      catch (Exception exception)
-      {
-        Assert.That(exception.Message, Is.Not.EqualTo("Error editing grade"));
-      }
+      DatabaseManager dbManager = new DatabaseManager(dbMock.Object);
+
+      Assert.That(() => dbManager.EditGrade(1, 1, -1),
+      Throws.Exception
+        .TypeOf<Exception>()
+        .With.Property("Message")
+        .EqualTo("Grade cannot be less than 0"));
     }
   }
 }
