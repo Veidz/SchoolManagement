@@ -65,5 +65,17 @@ namespace SchoolManagement.Tests.Integration
           .With.Property("Message")
           .EqualTo("Name must be at least 3 characters long"));
     }
+
+    [Test]
+    public void Ensure_EditStudent_Throws_If_Param_Contains_Numbers()
+    {
+      DatabaseManager dbManager = new DatabaseManager(new MySQL());
+
+      Assert.That(() => dbManager.EditStudent(1, "abc123"),
+        Throws.Exception
+          .TypeOf<Exception>()
+          .With.Property("Message")
+          .EqualTo("Name cannot have numbers"));
+    }
   }
 }
