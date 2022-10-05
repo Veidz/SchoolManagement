@@ -131,6 +131,7 @@
     </ApplicationDefinition>
     <Compile Include="Models\Grades.cs" />
     <Compile Include="Protocols\IDatabase.cs" />
+    <Compile Include="Tests\Integration\StudentModel.cs" />
     <Compile Include="Tests\Unit\GradesModel.cs" />
     <Compile Include="Tests\Unit\StudentModel.cs" />
     <Compile Include="Utils\RelayCommand.cs" />
