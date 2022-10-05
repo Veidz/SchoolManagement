@@ -48,7 +48,6 @@ namespace SchoolManagement.ViewModels
       set
       {
         selectedStudent = value;
-        //Subjects.Clear();
         Grades = new ObservableCollection<Grades>(DBManager.ShowGrades(SelectedStudent.ID));
       }
     }
@@ -59,6 +58,7 @@ namespace SchoolManagement.ViewModels
     public ICommand DeleteStudent { get; private set; }
 
     public ICommand AddGrade { get; private set; }
+    public ICommand EditGrade { get; private set; }
 
     public MainViewModel()
     {
@@ -160,6 +160,29 @@ namespace SchoolManagement.ViewModels
           }
         }
       }, param => SelectedStudent != null);
+
+      EditGrade = new RelayCommand((param) =>
+      {
+        GradeWindow gradeWindow = new GradeWindow()
+        {
+          DataContext = SelectedGrade
+        };
+
+        bool? dialogResult = gradeWindow.ShowDialog();
+        if (dialogResult == true)
+        {
+          try
+          {
+            DBManager.EditGrade(SelectedStudent.ID, SelectedGrade.SubjectID, SelectedGrade.Grade);
+
+            Grades = new ObservableCollection<Grades>(DBManager.ShowGrades(SelectedStudent.ID));
+          }
+          catch (Exception exception)
+          {
+            MessageBox.Show(exception.Message);
+          }
+        }
+      }, param => SelectedGrade != null);
     }
 
     private void NotifyPropertyChanged(string propertyName = "")
