@@ -34,105 +34,87 @@ namespace SchoolManagement.Tests.Unit
     }
 
     [Test]
-    public void Ensure_CreateStudent_Works_Properly_With_Invalid_Param()
+    public void Ensure_CreateStudent_Throws_If_Param_Is_Null()
     {
-      try
-      {
-        Moq.Mock<IDatabase> dbMock = new Moq.Mock<IDatabase>();
-        dbMock.Setup((db) => db.CreateStudent("Invalid-Student")).Throws(new Exception("Error creating student"));
+      Moq.Mock<IDatabase> dbMock = new Moq.Mock<IDatabase>();
 
-        DatabaseManager dbManager = new DatabaseManager(dbMock.Object);
-        dbManager.CreateStudent("Invalid-Student");
-      }
-      catch (Exception exception)
-      {
-        Assert.That(exception.Message, Is.EqualTo("Error creating student"));
-      }
+      DatabaseManager dbManager = new DatabaseManager(dbMock.Object);
+
+      Assert.That(() => dbManager.CreateStudent(null),
+        Throws.Exception
+          .TypeOf<ArgumentNullException>()
+          .With.Property("ParamName")
+          .EqualTo("Name cannot be null"));
     }
 
     [Test]
-    public void Ensure_CreateStudent_Works_Properly_With_Valid_Param()
+    public void Ensure_CreateStudent_Throws_If_Param_Length_Is_Less_Than_3()
     {
-      try
-      {
-        Moq.Mock<IDatabase> dbMock = new Moq.Mock<IDatabase>();
-        dbMock.Setup((db) => db.CreateStudent("Valid-Student"));
+      Moq.Mock<IDatabase> dbMock = new Moq.Mock<IDatabase>();
 
-        DatabaseManager dbManager = new DatabaseManager(dbMock.Object);
-        dbManager.CreateStudent("Valid-Student");
-      }
-      catch (Exception exception)
-      {
-        Assert.That(exception.Message, Is.Not.EqualTo("Error creating student"));
-      }
+      DatabaseManager dbManager = new DatabaseManager(dbMock.Object);
+
+      Assert.That(() => dbManager.CreateStudent("aa"),
+        Throws.Exception
+          .TypeOf<Exception>()
+          .With.Property("Message")
+          .EqualTo("Name must be at least 3 characters long"));
     }
 
     [Test]
-    public void Ensure_EditStudent_Works_Properly_With_Invalid_Param()
+    public void Ensure_CreateStudent_Throws_If_Param_Contains_Numbers()
     {
-      try
-      {
-        Moq.Mock<IDatabase> dbMock = new Moq.Mock<IDatabase>();
-        dbMock.Setup((db) => db.EditStudent(1, "Invalid-Student")).Throws(new Exception("Error editing student"));
+      Moq.Mock<IDatabase> dbMock = new Moq.Mock<IDatabase>();
 
-        DatabaseManager dbManager = new DatabaseManager(dbMock.Object);
-        dbManager.EditStudent(1, "Invalid-Student");
-      }
-      catch (Exception exception)
-      {
-        Assert.That(exception.Message, Is.EqualTo("Error editing student"));
-      }
+      DatabaseManager dbManager = new DatabaseManager(dbMock.Object);
+
+      Assert.That(() => dbManager.CreateStudent("aaa123"),
+        Throws.Exception
+          .TypeOf<Exception>()
+          .With.Property("Message")
+          .EqualTo("Name cannot have numbers"));
     }
 
     [Test]
-    public void Ensure_EditStudent_Works_Properly_With_Valid_Param()
+    public void Ensure_EditStudent_Throws_If_Param_Is_Null()
     {
-      try
-      {
-        Moq.Mock<IDatabase> dbMock = new Moq.Mock<IDatabase>();
-        dbMock.Setup((db) => db.EditStudent(1, "Valid-Student"));
+      Moq.Mock<IDatabase> dbMock = new Moq.Mock<IDatabase>();
 
-        DatabaseManager dbManager = new DatabaseManager(dbMock.Object);
-        dbManager.EditStudent(1, "Valid-Student");
-      }
-      catch (Exception exception)
-      {
-        Assert.That(exception.Message, Is.Not.EqualTo("Error editing student"));
-      }
+      DatabaseManager dbManager = new DatabaseManager(dbMock.Object);
+
+      Assert.That(() => dbManager.EditStudent(1, null),
+        Throws.Exception
+          .TypeOf<ArgumentNullException>()
+          .With.Property("ParamName")
+          .EqualTo("Name cannot be null"));
     }
 
     [Test]
-    public void Ensure_DeleteStudent_Works_Properly_With_Invalid_Param()
+    public void Ensure_EditStudent_Throws_If_Param_Length_Is_Less_Than_3()
     {
-      try
-      {
-        Moq.Mock<IDatabase> dbMock = new Moq.Mock<IDatabase>();
-        dbMock.Setup((db) => db.DeleteStudent(1)).Throws(new Exception("Error deleting student"));
+      Moq.Mock<IDatabase> dbMock = new Moq.Mock<IDatabase>();
 
-        DatabaseManager dbManager = new DatabaseManager(dbMock.Object);
-        dbManager.DeleteStudent(1);
-      }
-      catch (Exception exception)
-      {
-        Assert.That(exception.Message, Is.EqualTo("Error deleting student"));
-      }
+      DatabaseManager dbManager = new DatabaseManager(dbMock.Object);
+
+      Assert.That(() => dbManager.EditStudent(1, "aa"),
+        Throws.Exception
+          .TypeOf<Exception>()
+          .With.Property("Message")
+          .EqualTo("Name must be at least 3 characters long"));
     }
 
     [Test]
-    public void Ensure_DeleteStudent_Works_Properly_With_Valid_Param()
+    public void Ensure_EditStudent_Throws_If_Param_Contains_Numbers()
     {
-      try
-      {
-        Moq.Mock<IDatabase> dbMock = new Moq.Mock<IDatabase>();
-        dbMock.Setup((db) => db.DeleteStudent(1));
+      Moq.Mock<IDatabase> dbMock = new Moq.Mock<IDatabase>();
 
-        DatabaseManager dbManager = new DatabaseManager(dbMock.Object);
-        dbManager.DeleteStudent(1);
-      }
-      catch (Exception exception)
-      {
-        Assert.That(exception.Message, Is.Not.EqualTo("Error deleting student"));
-      }
+      DatabaseManager dbManager = new DatabaseManager(dbMock.Object);
+
+      Assert.That(() => dbManager.EditStudent(1, "abc123"),
+        Throws.Exception
+          .TypeOf<Exception>()
+          .With.Property("Message")
+          .EqualTo("Name cannot have numbers"));
     }
   }
 }
