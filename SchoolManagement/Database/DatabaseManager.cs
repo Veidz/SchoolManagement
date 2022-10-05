@@ -2,6 +2,7 @@
 using SchoolManagement.Protocols;
 using System;
 using System.Collections.Generic;
+using System.Text.RegularExpressions;
 
 namespace SchoolManagement.Database
 {
@@ -25,6 +26,7 @@ namespace SchoolManagement.Database
       {
         if (name == null) throw new ArgumentNullException("Name cannot be null");
         if (name.Length < 3) throw new Exception("Name must be at least 3 characters long");
+        if (Regex.IsMatch(name, @"\d")) throw new Exception("Name cannot have numbers");
 
         Database.CreateStudent(name);
       }
