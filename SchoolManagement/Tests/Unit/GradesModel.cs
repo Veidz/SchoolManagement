@@ -42,10 +42,10 @@ namespace SchoolManagement.Tests.Unit
       DatabaseManager dbManager = new DatabaseManager(dbMock.Object);
 
       Assert.That(() => dbManager.AddGrade(1, 1, 11),
-      Throws.Exception
-        .TypeOf<Exception>()
-        .With.Property("Message")
-        .EqualTo("Grade cannot be greater than 10"));
+        Throws.Exception
+          .TypeOf<Exception>()
+          .With.Property("Message")
+          .EqualTo("Grade cannot be greater than 10"));
     }
 
     [Test]
@@ -56,10 +56,10 @@ namespace SchoolManagement.Tests.Unit
       DatabaseManager dbManager = new DatabaseManager(dbMock.Object);
 
       Assert.That(() => dbManager.AddGrade(1, 1, -1),
-      Throws.Exception
-        .TypeOf<Exception>()
-        .With.Property("Message")
-        .EqualTo("Grade cannot be less than 0"));
+        Throws.Exception
+          .TypeOf<Exception>()
+          .With.Property("Message")
+          .EqualTo("Grade cannot be less than 0"));
     }
 
     [Test]
@@ -70,10 +70,10 @@ namespace SchoolManagement.Tests.Unit
       DatabaseManager dbManager = new DatabaseManager(dbMock.Object);
 
       Assert.That(() => dbManager.EditGrade(1, 1, 11),
-      Throws.Exception
-        .TypeOf<Exception>()
-        .With.Property("Message")
-        .EqualTo("Grade cannot be greater than 10"));
+        Throws.Exception
+          .TypeOf<Exception>()
+          .With.Property("Message")
+          .EqualTo("Grade cannot be greater than 10"));
     }
 
     [Test]
@@ -84,10 +84,10 @@ namespace SchoolManagement.Tests.Unit
       DatabaseManager dbManager = new DatabaseManager(dbMock.Object);
 
       Assert.That(() => dbManager.EditGrade(1, 1, -1),
-      Throws.Exception
-        .TypeOf<Exception>()
-        .With.Property("Message")
-        .EqualTo("Grade cannot be less than 0"));
+        Throws.Exception
+          .TypeOf<Exception>()
+          .With.Property("Message")
+          .EqualTo("Grade cannot be less than 0"));
     }
   }
 }

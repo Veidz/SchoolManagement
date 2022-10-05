@@ -3,7 +3,6 @@ using SchoolManagement.Protocols;
 using System;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
-using System.Xml.Linq;
 
 namespace SchoolManagement.Database
 {
@@ -43,7 +42,7 @@ namespace SchoolManagement.Database
     {
       Database.DeleteStudent(id);
     }
-  
+
     public List<Grades> ShowGrades(int id)
     {
       return Database.ShowGrades(id);
