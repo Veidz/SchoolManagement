@@ -31,6 +31,18 @@ namespace SchoolManagement.Tests.Integration
     }
 
     [Test]
+    public void Ensure_CreateStudent_Works_Properly_With_Numbers_Param()
+    {
+      DatabaseManager dbManager = new DatabaseManager(new MySQL());
+
+      Assert.That(() => dbManager.CreateStudent("abc123"),
+        Throws.Exception
+          .TypeOf<Exception>()
+          .With.Property("Message")
+          .EqualTo("Name cannot have numbers"));
+    }
+
+    [Test]
     public void Ensure_EditStudent_Works_Properly_With_Null_Param()
     {
       DatabaseManager dbManager = new DatabaseManager(new MySQL());
