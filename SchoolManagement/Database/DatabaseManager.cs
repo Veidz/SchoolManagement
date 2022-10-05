@@ -58,9 +58,8 @@ namespace SchoolManagement.Database
       {
         Database.DeleteStudent(id);
       }
-      catch (Exception exception)
+      catch (Exception)
       {
-        Console.WriteLine(exception.Message);
         throw new Exception("Error deleting student");
       }
     }
@@ -74,13 +73,13 @@ namespace SchoolManagement.Database
     {
       try
       {
+        if (grade > 10) throw new Exception("Grade cannot be greater than 10");
+
         Database.AddGrade(studentID, subjectID, grade);
       }
       catch (Exception exception)
       {
-        if (exception.Message.Contains("student_id")) throw new Exception("Invalid StudentID");
-        if (exception.Message.Contains("subject_id")) throw new Exception("Invalid SubjectID");
-        throw new Exception("Error adding grade");
+        throw exception;
       }
     }
 

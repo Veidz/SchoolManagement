@@ -7,27 +7,15 @@ namespace SchoolManagement.Tests.Integration
   public class GradesModel
   {
     [Test]
-    public void Ensure_AddGrade_Works_Properly_With_Invalid_StudentID_Param()
+    public void Ensure_AddGrade_Throws_If_Grade_Is_Greater_Than_10()
     {
       DatabaseManager dbManager = new DatabaseManager(new MySQL());
 
-      Assert.That(() => dbManager.AddGrade(10, 1, 10),
+      Assert.That(() => dbManager.AddGrade(1, 1, 11),
         Throws.Exception
           .TypeOf<Exception>()
           .With.Property("Message")
-          .EqualTo("Invalid StudentID"));
-    }
-
-    [Test]
-    public void Ensure_AddGrade_Works_Properly_With_Invalid_SubjectID_Param()
-    {
-      DatabaseManager dbManager = new DatabaseManager(new MySQL());
-
-      Assert.That(() => dbManager.AddGrade(1, 10, 10),
-        Throws.Exception
-          .TypeOf<Exception>()
-          .With.Property("Message")
-          .EqualTo("Invalid SubjectID"));
+          .EqualTo("Grade cannot be greater than 10"));
     }
   }
 }
