@@ -171,9 +171,11 @@ namespace SchoolManagement.ViewModels
 
       EditGrade = new RelayCommand((param) =>
       {
+        Grades gradeClone = (Grades)SelectedGrade.Clone();
+
         GradeWindow gradeWindow = new GradeWindow()
         {
-          DataContext = SelectedGrade
+          DataContext = gradeClone
         };
 
         bool? dialogResult = gradeWindow.ShowDialog();
@@ -181,7 +183,7 @@ namespace SchoolManagement.ViewModels
         {
           try
           {
-            DBManager.EditGrade(SelectedStudent.ID, SelectedGrade.SubjectID, SelectedGrade.Grade);
+            DBManager.EditGrade(SelectedStudent.ID, SelectedGrade.SubjectID, gradeClone.Grade);
 
             Grades = new ObservableCollection<Grades>(DBManager.ShowGrades(SelectedStudent.ID));
           }
