@@ -159,10 +159,7 @@
     <Compile Include="Database\PgSQL.cs" />
     <Compile Include="Models\Grades.cs" />
     <Compile Include="Protocols\IDatabase.cs" />
-    <Compile Include="Tests\Integration\GradesModel.cs" />
-    <Compile Include="Tests\Integration\StudentModel.cs" />
     <Compile Include="Tests\Unit\GradesModel.cs" />
-    <Compile Include="Tests\Unit\StudentModel.cs" />
     <Compile Include="Utils\RelayCommand.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="View\GradeWindow.xaml.cs">
