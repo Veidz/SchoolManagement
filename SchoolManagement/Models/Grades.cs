@@ -1,39 +1,14 @@
-﻿using Org.BouncyCastle.Security;
+﻿using System;
 
 namespace SchoolManagement.Models
 {
-  public class Grades
+  public class Grades : ICloneable
   {
-    private int subjectID;
-    private string subjectName;
-    private float grade;
+    public int SubjectID { get; set; }
 
-    public int SubjectID
-    {
-      get { return subjectID; }
-      set
-      {
-        subjectID = value;
-      }
-    }
+    public string SubjectName { get; set; }
 
-    public string SubjectName
-    {
-      get { return subjectName; }
-      set
-      {
-        subjectName = value;
-      }
-    }
-
-    public float Grade
-    {
-      get { return grade; }
-      set
-      {
-        grade = value;
-      }
-    }
+    public float Grade { get; set; }
 
     public Grades() { }
     public Grades(int subjectID, string subjectName, float grade)
@@ -41,6 +16,11 @@ namespace SchoolManagement.Models
       SubjectID = subjectID;
       SubjectName = subjectName;
       Grade = grade;
+    }
+
+    public object Clone()
+    {
+      return MemberwiseClone();
     }
   }
 }
