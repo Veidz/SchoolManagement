@@ -1,8 +1,9 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.ComponentModel;
 
 namespace SchoolManagement.Models
 {
-  public class Student : INotifyPropertyChanged
+  public class Student : INotifyPropertyChanged, ICloneable
   {
     private int id;
     private string name;
@@ -39,6 +40,11 @@ namespace SchoolManagement.Models
     private void NotifyPropertyChanged(string propertyName = "")
     {
       PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+    }
+
+    public object Clone()
+    {
+      return MemberwiseClone();
     }
   }
 }
