@@ -109,9 +109,11 @@ namespace SchoolManagement.ViewModels
 
       EditStudent = new RelayCommand((param) =>
       {
+        Student studentClone = (Student)SelectedStudent.Clone();
+
         StudentWindow studentWindow = new StudentWindow()
         {
-          DataContext = SelectedStudent
+          DataContext = studentClone
         };
 
         bool? dialogResult = studentWindow.ShowDialog();
@@ -119,7 +121,7 @@ namespace SchoolManagement.ViewModels
         {
           try
           {
-            DBManager.EditStudent(SelectedStudent.ID, SelectedStudent.Name);
+            DBManager.EditStudent(SelectedStudent.ID, studentClone.Name);
 
             Students = new ObservableCollection<Student>(DBManager.GetAllStudents());
           }
