@@ -11,11 +11,9 @@ using System.Windows.Input;
 
 namespace SchoolManagement.ViewModels
 {
-  public class MainViewModel : INotifyPropertyChanged
+  public class MainViewModel : BaseViewModel
   {
     private readonly DatabaseManager DBManager;
-
-    public event PropertyChangedEventHandler PropertyChanged;
 
     private ObservableCollection<Student> students;
     private ObservableCollection<Grades> grades;
@@ -193,11 +191,6 @@ namespace SchoolManagement.ViewModels
           }
         }
       }, param => SelectedGrade != null);
-    }
-
-    private void NotifyPropertyChanged(string propertyName = "")
-    {
-      PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
     }
   }
 }

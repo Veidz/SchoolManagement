@@ -160,6 +160,7 @@
     <Compile Include="Models\Grades.cs" />
     <Compile Include="Protocols\IDatabase.cs" />
     <Compile Include="Utils\RelayCommand.cs" />
+    <Compile Include="ViewModels\BaseViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="View\GradeWindow.xaml.cs">
       <DependentUpon>GradeWindow.xaml</DependentUpon>
