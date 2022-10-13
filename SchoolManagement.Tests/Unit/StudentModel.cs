@@ -131,5 +131,20 @@ namespace SchoolManagement.Tests.Unit
           .With.Property("Message")
           .EqualTo("User not found"));
     }
+
+    [Test]
+    public void Ensure_DeleteStudent_Throws_If_User_Do_Not_Exist()
+    {
+      Moq.Mock<IDatabase> dbMock = new Moq.Mock<IDatabase>();
+
+      DatabaseManager dbManager = new DatabaseManager(dbMock.Object);
+      dbMock.Setup((db) => db.GetStudentById(1)).Returns((Student)null);
+
+      Assert.That(() => dbManager.DeleteStudent(1),
+        Throws.Exception
+          .TypeOf<Exception>()
+          .With.Property("Message")
+          .EqualTo("User not found"));
+    }
   }
 }

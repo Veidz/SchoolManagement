@@ -48,6 +48,9 @@ namespace SchoolManagement.Database
 
     public void DeleteStudent(int id)
     {
+      Student student = Database.GetStudentById(id);
+      if (student == null) throw new Exception("User not found");
+
       Database.DeleteStudent(id);
     }
 
