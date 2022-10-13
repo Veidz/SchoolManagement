@@ -1,6 +1,6 @@
-﻿using SchoolManagement.Database;
+﻿using SchoolManagement.Core;
+using SchoolManagement.Database;
 using SchoolManagement.Models;
-using SchoolManagement.Utils;
 using SchoolManagement.View;
 using System;
 using System.Collections.Generic;
@@ -11,7 +11,7 @@ using System.Windows.Input;
 
 namespace SchoolManagement.ViewModels
 {
-  public class MainViewModel : BaseViewModel
+  public class MainViewModel : ObservableObject
   {
     private readonly DatabaseManager DBManager;
 
