@@ -20,6 +20,11 @@ namespace SchoolManagement.Database
       return Database.GetAllStudents();
     }
 
+    public Student GetStudentById(int id)
+    {
+      return Database.GetStudentById(id);
+    }
+
     public void CreateStudent(string name)
     {
       if (name == null) throw new ArgumentNullException("Name cannot be null");
@@ -34,6 +39,9 @@ namespace SchoolManagement.Database
       if (name == null) throw new ArgumentNullException("Name cannot be null");
       if (name.Length < 3) throw new Exception("Name must be at least 3 characters long");
       if (Regex.IsMatch(name, @"\d")) throw new Exception("Name cannot have numbers");
+
+      Student student = Database.GetStudentById(id);
+      if (student == null) throw new Exception("User not found");
 
       Database.EditStudent(id, name);
     }

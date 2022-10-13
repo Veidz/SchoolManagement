@@ -26,7 +26,7 @@ namespace SchoolManagement.Database
       try
       {
         sqlConnection = new NpgsqlConnection($"Server={host};Port={port};Database={dbname};User Id={user};Password={password}");
-      } 
+      }
       catch (Exception exception)
       {
         MessageBox.Show(exception.Message);
@@ -65,6 +65,29 @@ namespace SchoolManagement.Database
       create.ExecuteNonQuery();
 
       Disconnect();
+    }
+
+    public Student GetStudentById(int id)
+    {
+      Connect();
+
+      NpgsqlCommand getById = new NpgsqlCommand("SELECT * FROM students WHERE ID = @id;", sqlConnection);
+      getById.Parameters.AddWithValue("@id", id);
+
+      NpgsqlDataReader reader = getById.ExecuteReader();
+
+      while (reader.Read())
+      {
+        Student student = new Student()
+        {
+          ID = reader.GetInt32(0),
+          Name = reader.GetString(1)
+        };
+
+        Disconnect();
+        return student;
+      }
+      return null;
     }
 
     public void EditStudent(int id, string name)

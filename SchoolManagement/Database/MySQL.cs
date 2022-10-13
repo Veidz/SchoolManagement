@@ -52,6 +52,29 @@ namespace SchoolManagement.Database
       return students;
     }
 
+    public Student GetStudentById(int id)
+    {
+      Connect();
+
+      MySqlCommand getById = new MySqlCommand("SELECT * FROM `school_management`.students WHERE ID = @id;", sqlConnection);
+      getById.Parameters.AddWithValue("@id", id);
+
+      MySqlDataReader reader = getById.ExecuteReader();
+
+      while (reader.Read())
+      {
+        Student student = new Student()
+        {
+          ID = reader.GetInt32(0),
+          Name = reader.GetString(1)
+        };
+
+        Disconnect();
+        return student;
+      }
+      return null;
+    }
+
     public void CreateStudent(string name)
     {
       Connect();

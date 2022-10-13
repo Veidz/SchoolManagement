@@ -6,6 +6,7 @@ namespace SchoolManagement.Protocols
   public interface IDatabase
   {
     List<Student> GetAllStudents();
+    Student GetStudentById(int id);
     void CreateStudent(string name);
     void EditStudent(int id, string name);
     void DeleteStudent(int id);
