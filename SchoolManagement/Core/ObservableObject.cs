@@ -1,8 +1,8 @@
 ﻿using System.ComponentModel;
 
-namespace SchoolManagement.ViewModels
+namespace SchoolManagement.Core
 {
-  public class BaseViewModel : INotifyPropertyChanged
+  public class ObservableObject : INotifyPropertyChanged
   {
     public event PropertyChangedEventHandler PropertyChanged;
 
