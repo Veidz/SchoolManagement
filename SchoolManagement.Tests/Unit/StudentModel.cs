@@ -116,5 +116,20 @@ namespace SchoolManagement.Tests.Unit
           .With.Property("Message")
           .EqualTo("Name cannot have numbers"));
     }
+
+    [Test]
+    public void Ensure_EditStudent_Throws_If_User_Do_Not_Exist()
+    {
+      Moq.Mock<IDatabase> dbMock = new Moq.Mock<IDatabase>();
+
+      DatabaseManager dbManager = new DatabaseManager(dbMock.Object);
+      dbMock.Setup((db) => db.GetStudentById(1)).Returns((Student)null);
+
+      Assert.That(() => dbManager.EditStudent(1, "abc"),
+        Throws.Exception
+          .TypeOf<Exception>()
+          .With.Property("Message")
+          .EqualTo("User not found"));
+    }
   }
 }
